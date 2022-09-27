@@ -49,6 +49,10 @@ hr { margin: 1em 0; }
 	z-index: 2;
 }
 
+#popup-inner p {
+	padding-left: 1em;
+}
+
 #close-btn {
 	position: absolute;
 	right: 0;
