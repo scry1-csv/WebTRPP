@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" href="favicon.png" />
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<title>Document</title>
+</head>
+
+<body id="body">
+	<div id="popup">
+		<div id="popup-inner">
+			<div id="close-btn" onclick="togglePopup()">✖</div>
+			<h3>Usage</h3>
+			<p>
+				1. Load audio file and csv file for the time rotor<br />
+				2. Press "Connect Buttplug Device" button to pair the device<br />
+				3. Press the play button on the audio control<br />
+				<br />
+				Due to the specifications of wireless communication, there is a slight time lag between when the
+				vibration signal is
+				sent to the device and when the device actually vibrates, so by default the signal is sent 0.5
+				seconds earlier. You can
+				adjust this time offset by changing the value of "Time offset" form. The time lag varies depending
+				on the environment,
+				so adjust accordingly. Press the "Load audio&pattern for adjusting offset" button to load the audio
+				and pattern for the adjustment (they are
+				also loaded by default).
+			</p>
+		</div>
+		<div id="bg-black" onclick="togglePopup()"></div>
+	</div>
+
+	<p>
+		<a style="color: blue; cursor: pointer;" onclick="togglePopup()">Usage</a>
+		<a href="">GitHub</a>
+		<a href="index_ja.html">日本語</a>
+	</p>
+
+	<div>
+		<audio id="audio" ontimeupdate="videoTimeUpdated()" onseeked="audioOnSeeked()" onpause="audioStopped()"
+			onended="audioStopped()" controls></audio>
+	</div>
+
+	<div class="contents" id="forms">
+		<div>
+			Audio File:<br />
+			<input type="file" id="inputAudio" accept="audio/*" onchange="audioInput()">
+		</div>
+		<div>
+			Pattern File:<br />
+			<input type="file" id="inputFile" accept=".csv" onchange="fileInput()">
+		</div>
+		<div>
+			Time offset: <input id="offset" type="text" style="width:3em;" value="0.5"
+				onchange="offsetChanged()" />sec.<br>
+		</div>
+		<div><button onclick="loadTestPattern()">Load audio&pattern for adjusting offset</button> <span
+				class="credit">Sound by <a href="https://otologic.jp">OtoLogic</a> (CC BY 4.0)</span></div>
+	</div>
+
+	<hr />
+	<div class="contents" id="forms">
+		<div><button type="button" onclick="runDeviceControl();">Connect Buttplug device</button></div>
+		<div>Connected device: <span id="device"></span></div>
+	</div>
+
+	<hr />
+	<div class="contents"><code id="log">Buttplug log will be displayed here</code></div>
+
+	<script lang="javascript" src="https://cdn.jsdelivr.net/npm/buttplug@1.0.14/dist/web/buttplug.min.js"></script>
+	<script src="mybuttplug.js"></script>
+	<script src="timeroterpattern.js"></script>
+	<script src="vibratoroperator.js"></script>
+	<script src="main.js"></script>
+
+</html>

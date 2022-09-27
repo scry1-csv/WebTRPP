@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" href="favicon.png" />
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<title>Document</title>
+
+</head>
+
+<body id="body">
+	<div id="popup">
+		<div id="popup-inner">
+			<div id="close-btn" onclick="togglePopup()">✖</div>
+			<h3>使い方</h3>
+			<p>
+				1. タイムローター用の音声ファイルとcsvファイルを読み込みます<br />
+				2. 「Buttplugデバイスの接続」ボタンを押し、デバイスをペアリングします<br />
+				3. オーディオコントロールの再生ボタンを押します<br />
+				<br />
+				なお、無線通信の仕様上、デバイスに振動信号を送ってから実際にデバイスが振動するまでに若干のタイムラグがあるため、デフォルトでは0.5秒早めに信号を送信しています。「音声とcsvの時間差」の数値を変更するとこの時間差を調整できます。環境によって時間差は異なるため、適宜調整してください。「時間差テスト用音声とcsvの読み込み」ボタンを押すと、調整用の音声とcsvを読み込むことができます（デフォルトでも読み込み済みになっています）。
+			</p>
+		</div>
+		<div id="bg-black" onclick="togglePopup()"></div>
+	</div>
+
+	<p>
+		<a style="color: blue; cursor: pointer;" onclick="togglePopup()">使い方</a>
+		<a href="">GitHub</a>
+		<a href="index.html">English</a>
+	</p>
+
+	<div>
+		<audio id="audio" ontimeupdate="videoTimeUpdated()" onseeked="audioOnSeeked()" onpause="audioStopped()"
+			onended="audioStopped()" controls></audio>
+	</div>
+
+	<div class="contents" id="forms">
+		<div>
+			音声ファイル:<br />
+			<input type="file" id="inputAudio" accept="audio/*" onchange="audioInput()">
+		</div>
+		<div>
+			csvファイル:<br />
+			<input type="file" id="inputFile" accept=".csv" onchange="fileInput()">
+		</div>
+		<div>
+			音声とcsvの時間差: <input id="offset" type="text" style="width:3em;" value="0.5" onchange="offsetChanged()" />秒<br>
+		</div>
+		<div><button onclick="loadTestPattern()">時間差テスト用音声とcsvの読み込み</button> <span class="credit">Sound by <a
+					href="https://otologic.jp">OtoLogic</a> (CC BY 4.0)</span></div>
+	</div>
+
+	<hr />
+	<div class="contents" id="forms">
+		<div><button type="button" onclick="runDeviceControl();">Buttplugデバイスの接続</button></div>
+		<div>接続済みデバイス: <span id="device"></span></div>
+	</div>
+
+	<hr />
+	<div class="contents"><code id="log">ここにButtplugのログが表示されます</code></div>
+
+	<script lang="javascript" src="https://cdn.jsdelivr.net/npm/buttplug@1.0.14/dist/web/buttplug.min.js"></script>
+	<script src="mybuttplug.js"></script>
+	<script src="timeroterpattern.js"></script>
+	<script src="vibratoroperator.js"></script>
+	<script src="main.js"></script>
+
+</html>
