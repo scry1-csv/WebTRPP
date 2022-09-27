@@ -7,7 +7,7 @@ Buttplugをサポートするデバイス
 [リスト](https://iostindex.com/?filter0ButtplugSupport=7)
 
 ## 使用しているライブラリ
-[Buttplug JS](https://github.com/buttplugio/buttplug-js)
+[Buttplug JS](https://github.com/buttplugio/buttplug-rs-ffi/tree/master/js)
 
 ## Credits
 testaudio.mp3: Sound by [OtoLogic](https://otologic.jp) (CC BY 4.0)
