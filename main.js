@@ -1,3 +1,4 @@
+const POPUP_ELEM = document.getElementById("popup");
 const AUDIO_ELEM = document.getElementById("audio");
 const INPUT_AUDIO_ELEM = document.getElementById("inputAudio");
 const OFFSET_ELEM = document.getElementById("offset");
@@ -60,12 +61,13 @@ function audioStopped() {
 }
 
 function togglePopup() {
-    const elem = document.getElementById("popup");
-    elem.classList.toggle("is-show");
+    POPUP_ELEM.classList.toggle("is-show");
 }
 
 function main() {
     loadTestPattern();
+
+    document.getElementById("bg-black").style.height = `${POPUP_ELEM.scrollHeight * 1.1}px`;
 }
 
 main();
