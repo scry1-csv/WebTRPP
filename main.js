@@ -1,7 +1,6 @@
 const POPUP_ELEM = document.getElementById("popup");
 const AUDIO_ELEM = document.getElementById("audio");
 const INPUT_AUDIO_ELEM = document.getElementById("inputAudio");
-const OFFSET_ELEM = document.getElementById("offset");
 const INPUT_FILE_ELEM = document.getElementById("inputFile");
 
 let gDevice;
@@ -43,7 +42,25 @@ function loadTestPattern() {
     gPattern = gTestPattern;
 }
 
+function seekbarWidthChanged() {
+    const SEEKBAR_WIDTH_ELEM = document.getElementById("seekbarWidth");
+    const r = SEEKBAR_WIDTH_ELEM.value.match(/^([0-9]+)(%?$)/);
+    if (r === null) {
+        AUDIO_ELEM.style.width = "100%";
+        SEEKBAR_WIDTH_ELEM.value = "100%";
+    }
+    else if (r.slice(-1)[0] === "%") {
+        AUDIO_ELEM.style.width = r[0];
+        console.log("set AUDIO_ELEM.style.width as " + r[0]);
+    } 
+    else {
+        AUDIO_ELEM.style.width = r[0] + "px";
+        console.log("set AUDIO_ELEM.style.width as " + r[0] + "px");
+    }
+}
+
 function offsetChanged() {
+    const OFFSET_ELEM = document.getElementById("offset");
     const r = OFFSET_ELEM.value.match(/^[\-\+]?[0-9]*(\.[0-9]+)?$/);
     if (r === null) gOffset = 0;
     else gOffset = Number(r[0]);

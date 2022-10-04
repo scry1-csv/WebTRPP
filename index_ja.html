@@ -3,12 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=max-device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="icon" href="favicon.png" />
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<title>WebTRPP : TimeRoter Pattern Player on the Web</title>
-
 </head>
 
 <body id="body">
@@ -16,7 +15,7 @@
 		<div id="popup-inner">
 			<div id="close-btn" onclick="togglePopup()">✖</div>
 			<h3>準備</h3>
-			<p>現在のところ、Google ChromeやEdge等 のChromium採用ブラウザにしか対応していません。</p>
+			<p>現在のところ、Google ChromeやEdge等のChromium採用ブラウザにしか対応していません。</p>
 			<p>使う前に、ブラウザのWeb Bluetoothを有効にしてください ( chrome://flags/#enable-experimental-web-platform-features ) 。一度設定すれば次回以降は不要です。</p>
 			<h3>使い方</h3>
 			<ol>
@@ -34,6 +33,10 @@
 				<li><a target="_blank" href="https://amzn.to/3UMficu">MagicMotion Dante</a></li>
 				<li><a target="_blank" href="https://amzn.to/3BQ27OK">Lovense Domi2</a></li>
 			</ul>
+			<h3>シークバーの幅について</h3>
+			<p>
+				スマートフォンなどの画面の幅が狭い環境では音声のシークバーも狭くなり再生位置をコントロールするのが困難なので、対策としてシークバーの幅を調整可能にしてあります。数値のみを入力するとpxの絶対値、%をつけると画面の幅に対する相対値を設定できます。
+			</p>
 			<h3>時間差について</h3>
 			<p>
 				無線通信の仕様上、デバイスに振動信号を送ってから実際にデバイスが振動するまでに若干のタイムラグがあるため、デフォルトでは0.5秒早めに信号を送信しています。「音声とcsvの時間差」の数値を変更するとこの時間差を調整できます。環境によって時間差は異なるため、適宜調整してください。「時間差テスト用音声とcsvの読み込み」ボタンを押すと、調整用の音声とcsvを読み込むことができます（デフォルトでも読み込み済みになっています）。
@@ -44,11 +47,11 @@
 		<div id="bg-black" onclick="togglePopup()"></div>
 	</div>
 
-	<p>
+	<div id="header">
 		<a style="color: blue; cursor: pointer;" onclick="togglePopup()">使い方</a>
 		<a href="https://github.com/monoredgoblins/WebTRPP">GitHub</a>
 		<a href="index.html">English</a>
-	</p>
+	</div>
 
 	<div>
 		<audio id="audio" ontimeupdate="videoTimeUpdated()" onseeked="audioOnSeeked()" onpause="audioStopped()"
@@ -56,6 +59,7 @@
 	</div>
 
 	<div class="contents" id="forms">
+
 		<div>
 			音声ファイル:<br />
 			<input type="file" id="inputAudio" accept="audio/*" onchange="audioInput()">
@@ -63,6 +67,9 @@
 		<div>
 			csvファイル:<br />
 			<input type="file" id="inputFile" accept=".csv" onchange="fileInput()">
+		</div>
+		<div>シークバーの幅:
+			<input id="seekbarWidth" type="text" style="width:4em;" value="100%" onchange="seekbarWidthChanged()">
 		</div>
 		<div>
 			音声とcsvの時間差: <input id="offset" type="text" style="width:3em;" value="0.5" onchange="offsetChanged()" />秒<br>

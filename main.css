@@ -1,8 +1,9 @@
 body { padding:0 2em; }
 
-a { text-decoration: none; }
-
-#header { text-align: center; }
+#header {padding-bottom: 0.6em;}
+#header a {
+	text-decoration: none;
+}
 
 #audio {
 	width: 100%;
@@ -14,13 +15,22 @@ a { text-decoration: none; }
 	display: inline-block;
 }
 
+.helpButton {
+	font-size: 0.8em;
+	background-color: #eff;
+	color: #000;
+	border-radius: 100%;
+	border-width: 1px;
+	margin-left: 4px;
+}
+
 hr { margin: 1em 0; }
 
 #forms div{	padding: 0.5em 0; }
+.credit { font-size: 0.8em; }
 
 #logdiv { padding-left: 0.7em; }
 
-.credit { font-size: 0.8em; }
 
 #popup {
 	position: fixed;
@@ -41,8 +51,8 @@ hr { margin: 1em 0; }
 #popup-inner {
 	position: absolute;
 	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -40%);
+	top: 70%;
+	transform: translate(-50%, -50%);
 	width: 80%;
 	padding: 50px;
 	background-color: #fff;
